@@ -59,12 +59,20 @@ const userSchema = new mongoose.Schema({
    } , 
    bio : {
     type : String , 
-    default : "I am the new user"
+    default : "I am the new user" , 
+    maxLength : 100
    } , 
    skills :{
-    type : [String] 
+    type : [String] , 
+    validate: {
+      validator: function (skills) {
+          return skills.length <= 10;
+      },
+      message: "You can have at most 10 skills"
+    }
    }
-} , {
+  } 
+ , {
   timestamps : true
 }) ;
 

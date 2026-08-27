@@ -22,6 +22,26 @@ const validateSignup = (req)=>{
     }
 };
 
+const validateEditProfileData = (req)=>{
+  const allowedEditFields = ["bio" , "age" , "firstName" , "lastName" , "gender" , "photoUrl" , "skills"]
+
+  const notAllowedFields = Object.keys(req.body).filter((fields) => !allowedEditFields.includes(fields ))
+
+  return notAllowedFields; 
+} ;
+
+const validateChangePassword = (req)=>{
+  const fields = Object.keys(req.body);
+
+  if (fields.length !== 2 || fields[0] !== "password" || fields[1] !== "newPassword") {
+      return false;
+  }
+
+  return true ; 
+}
+
 module.exports = {
   validateSignup , 
+  validateEditProfileData , 
+  validateChangePassword , 
 }
