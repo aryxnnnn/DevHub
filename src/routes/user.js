@@ -1,6 +1,7 @@
 const express = require("express") ; 
 const userRouter = express.Router() ; 
 const {userAuth} = require("../middleware/auth.js") ;
+const {User} = require("../models/user.js")
 const {ConnectionRequest} = require("../models/connectionRequest.js")
 
 userRouter.get("/user/requests" , userAuth , async(req,res)=>{
@@ -50,6 +51,49 @@ userRouter.get("/user/connections" , userAuth , async(req , res)=>{
 
   } catch (error) {
     res.status(400).send(error.message)  ; 
+  }
+}) ; 
+
+userRouter.get("/user/feed" , userAuth , async(req , res )=>{
+  try {
+    const loggedInUser = req.user ; 
+
+    const page = parseInt(req.query.page)  || 1 ; 
+    let limit = parseInt(req.query.limit) || 10 ; 
+    limit = limit > 50 ? 50 : limit ; 
+
+    const skip = (page-1)*limit ; 
+
+    //finding all the CR i recieved or sent ; 
+    const myRequests = await ConnectionRequest.find({
+      $or : [
+        {fromUserId : loggedInUser._id} , 
+        {toUserId : loggedInUser._id}
+      ]
+    })
+
+    let myInteractions = myRequests.map((request)=>{
+      if(request.toUserId.equals(loggedInUser._id)){
+        return request.fromUserId ; 
+      }
+      return request.toUserId; 
+    })
+    
+    myInteractions.push(loggedInUser._id) ; 
+
+    const Feed = await User.find({
+       _id : {$nin : myInteractions}
+    }) .select(["firstName" , "lastName" , "age" , "gender" , "photoUrl"])
+      .skip(skip)
+      .limit(limit) ; 
+
+    res.json({
+      message : "here's your feed " , 
+      Feed
+    })
+
+  } catch (error) {
+    res.status(400).send(error.message) ;
   }
 }) ; 
 
