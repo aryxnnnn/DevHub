@@ -45,7 +45,10 @@ authRouter.post("/login" , async(req, res)=>{
 
       // send back a cookie 
       res.cookie("token" ,token)  ;
-      res.send("user logged in")
+      res.json({
+        message :"user logged in" , 
+        user    
+      })
     }
     else{
       throw new Error("Bad Credentials") ;
