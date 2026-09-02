@@ -15,7 +15,7 @@
       status : {
         type : String , 
         enum : {
-          values : ["ignore" , "interested" , "accepted" , "rejected"] , 
+          values : ["ignore" , "interested" , "accepted" , "rejected" , "disconnected"] , 
           message : `status {value} is not supported`
         }
       }

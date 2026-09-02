@@ -104,4 +104,44 @@ requestRouter.post("/review/:status/:requestId" , userAuth ,async(req,res)=>{
   }
 } )
 
+requestRouter.post("/:status/:toUserId" , userAuth , async(req ,res)=>{
+  try {
+    const loggedInUser = req.user ; 
+    const status = req.params.status ; 
+    const toUserId = req.params.toUserId ; 
+    // sanitize the data 
+    if(status != "disconnected"){
+      throw new Error("Please enter a valid status for request")
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(toUserId)) {
+      return res.status(400).send("Invalid Id of connected user");
+    }
+    
+    const connectedReq = await ConnectionRequest.findOne({
+      $or: [
+        { fromUserId: loggedInUser._id,toUserId: toUserId },
+        { fromUserId: toUserId,toUserId: loggedInUser._id }
+      ], 
+      status : "accepted" 
+    }) ; 
+
+    if(!connectedReq) throw new Error("No valid connection exists") ; 
+
+    connectedReq.status = "disconnected"  ; 
+
+    await connectedReq.save() ; 
+
+    res.json({
+      message : toUserId.firstName + "disconnected successfully"  , 
+      status : connectedReq.stat
+    })
+
+  } catch (error) {
+    res.status(400).json({
+      message : error.message ,
+    })
+  }
+})
+
 module.exports = requestRouter   ; 

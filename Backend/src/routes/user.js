@@ -64,7 +64,7 @@ userRouter.get("/user/feed" , userAuth , async(req , res )=>{
 
     const skip = (page-1)*limit ; 
 
-    //finding all the CR i recieved or sent ; 
+    //finding all the CR i recieved or sent , basically interacted with  ; 
     const myRequests = await ConnectionRequest.find({
       $or : [
         {fromUserId : loggedInUser._id} , 

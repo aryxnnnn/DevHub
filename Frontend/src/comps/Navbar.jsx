@@ -39,8 +39,11 @@ function Navbar() {
             tabIndex={-1}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-42 p-2 shadow text-yellow-500" >
 
+            <li ><Link className="justify-start text-lg"  to = "/">Home</Link></li>
             <li ><Link className="justify-start text-lg"  to = "/profile/view">Profile</Link></li>
-            <li><Link className="justify-start text-lg"  to= "/profile/edit">Settings</Link></li>
+            <li><Link className="justify-start text-lg"  to= "/profile/password">Settings</Link></li>
+            <li ><Link className="justify-start text-lg"  to = "/user/connections">My Connections</Link></li>
+            <li><Link className="justify-start text-lg"  to= "/user/requests">Requests</Link></li>
             <li><Link className="justify-start text-lg"  to= "/">Chats
             <span className="badge">soon..</span>
             </Link></li>
