@@ -11,6 +11,7 @@ function Login() {
 
   const [email, setEmail] = useState("aayush@gmail.com");
   const [password, setPassword] = useState("Aayush@123");
+  const [Error , SetError] = useState("")
 
   const dispatch = useDispatch() ; 
   const navigate = useNavigate() ; 
@@ -32,13 +33,13 @@ function Login() {
       navigate("/") ; 
     
     } catch (error) {
-      console.log(error)
+      SetError(error.response.data) ; 
     }
   } ; 
 
   return (
     <div className='min-h-screen flex justify-center items-center'>
-      <div className="card card-border bg-base-300 w-140 h-90 mb-20">
+      <div className="card card-border bg-base-300 w-140 min-h-90 mb-20">
         <div className="card-body">
           <div className='flex flex-col items-center'>
               <h2 className="card-title text-3xl font-medium ">Sign in to you Account</h2>
@@ -59,7 +60,9 @@ function Login() {
                 placeholder="Enter your PAssword" 
                 onChange={(e)=>setPassword(e.target.value)}/>
           </fieldset>
-
+          {Error != "" &&
+            <p className='text-red-600 text-lg text-center '>{Error + " !!"}</p>
+          }
           <div className="card-actions justify-center ">
             <button className="btn btn-primary w-50 mb-5" onClick={handleLogin}>Login</button>
           </div>

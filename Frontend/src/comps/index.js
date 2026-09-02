@@ -4,5 +4,9 @@ import Login from "./Login";
 import Signup from "./Signup";
 import AuthLayout from "./AuthLayout";
 import LoadingSpinner from "./LoadingSpinner";
+import Feed from "./Feed";
+import ProfileCard from "./ProfileCard";
+import FeedCard from "./FeedCard";
+import Toast from "./Toast";
 
-export {Navbar , Footer , Login , Signup , AuthLayout , LoadingSpinner} ;
+export {Navbar , Footer , Login , Signup , AuthLayout , LoadingSpinner , Feed , ProfileCard ,FeedCard , Toast} ;

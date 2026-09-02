@@ -83,7 +83,7 @@ userRouter.get("/user/feed" , userAuth , async(req , res )=>{
 
     const Feed = await User.find({
        _id : {$nin : myInteractions}
-    }) .select(["firstName" , "lastName" , "age" , "gender" , "photoUrl"])
+    }) .select(["firstName" , "skills" , "age" , "gender" , "photoUrl" , "bio" ])
       .skip(skip)
       .limit(limit) ; 
 
