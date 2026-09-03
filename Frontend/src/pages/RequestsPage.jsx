@@ -1,8 +1,9 @@
 import React from 'react'
+import Requests from '../comps/Requests'
 
 function RequestsPage() {
   return (
-    <div>RequestsPage</div>
+    <Requests/>
   )
 }
 

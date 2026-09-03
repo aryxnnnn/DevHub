@@ -8,5 +8,10 @@ import Feed from "./Feed";
 import ProfileCard from "./ProfileCard";
 import FeedCard from "./FeedCard";
 import Toast from "./Toast";
+import RedToast from "./RedToast";
+import ConnectionCard from "./ConnectionCard";
+import Connections from "./Connections";
+import RequestCard from "./RequestCard";
+import Requests from "./Requests";
 
-export {Navbar , Footer , Login , Signup , AuthLayout , LoadingSpinner , Feed , ProfileCard ,FeedCard , Toast} ;
+export {Navbar , Footer , Login , Signup , AuthLayout , LoadingSpinner , Feed , ProfileCard ,FeedCard , Toast ,RedToast , ConnectionCard,Connections , RequestCard , Requests} ; 

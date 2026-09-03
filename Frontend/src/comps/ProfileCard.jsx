@@ -1,8 +1,6 @@
 import React from 'react'
 
-
 function ProfileCard({user}) {
-
   return <>
       <div className="card bg-base-300 w-110 shadow-sm p-12 text-2xl mt-15 ">
           <figure className='max-h-100'>
