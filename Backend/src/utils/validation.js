@@ -1,6 +1,7 @@
 const validator = require("validator") ; 
+const {User} = require("../models/user.js") ; 
 
-const validateSignup = (req)=>{
+const validateSignup = async(req)=>{
     const {firstName , lastName , emailID, password} = req.body ; 
 
     if (!firstName || !lastName || !emailID || !password) {
@@ -19,6 +20,11 @@ const validateSignup = (req)=>{
     else if(!validator.isStrongPassword(password)){
 
       throw new Error("please use this format for password -> { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1 } ")
+    }
+
+    const existingUser = await User.findOne({ emailID });
+    if (existingUser) {
+        throw new Error("User with this email already exists");
     }
 };
 

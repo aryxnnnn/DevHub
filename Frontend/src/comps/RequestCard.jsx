@@ -1,11 +1,9 @@
 import React from "react";
 
-function RequestCard({ requestId , user, acceptRequest, rejectRequest }) {
-
+function RequestCard({ requestId, user, acceptRequest, rejectRequest }) {
   return (
     <>
       <div className="w-[70%] mx-auto my-4 px-[5%] py-5 flex items-center bg-slate-800 rounded-xl">
-
         <div className="w-20 h-20 shrink-0">
           <img
             src={user.photoUrl}
@@ -21,9 +19,23 @@ function RequestCard({ requestId , user, acceptRequest, rejectRequest }) {
         </div>
 
         <div className="flex gap-3">
-          <button className="btn btn-success text-xl" onClick={()=>{acceptRequest(requestId)}}>Accept ✅</button>
+          <button
+            className="btn btn-success text-xl"
+            onClick={() => {
+              acceptRequest(requestId);
+            }}
+          >
+            Accept ✅
+          </button>
 
-          <button className="btn btn-error text-xl" onClick={()=>{rejectRequest(requestId)}}>Reject ❌</button>
+          <button
+            className="btn btn-error text-xl"
+            onClick={() => {
+              rejectRequest(requestId);
+            }}
+          >
+            Reject ❌
+          </button>
         </div>
       </div>
     </>

@@ -1,10 +1,10 @@
 import React from 'react'
 
-function FeedCard({user}) {
+function FeedCard({user , interested , ignore}) {
   return (
     <div>
       <div className="card bg-base-300 w-96 shadow-sm p-2">
-        <figure className="px-10 pt-10">
+        <figure className="px-10 pt-10 max-h-100 mt-6">
           <img
             src={user.photoUrl}
             alt="profle pic"
@@ -14,8 +14,12 @@ function FeedCard({user}) {
           <h2 className="card-title">{user.firstName}</h2>
           <p>{user.bio}</p>
           <div className="card-actions">
-            <button className="btn btn-primary">Ignore</button>
-            <button className="btn btn-secondary">Interested</button>
+            <button className="btn btn-primary" onClick={()=>ignore(user._id)} >
+              Ignore
+            </button>
+            <button className="btn btn-secondary" onClick={()=>interested(user._id)}>
+              Interested
+            </button>
           </div>
         </div>
       </div>

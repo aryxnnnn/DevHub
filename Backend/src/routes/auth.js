@@ -10,15 +10,24 @@ authRouter.post("/signup" , async(req , res) =>{
   
   try {
       // validatiing the data 
-      validateSignup(req) ; 
+      await validateSignup(req) ; 
 
       //encryting the password 
       req.body.password = await bcrypt.hash(req.body.password , 10) ; 
 
       // creating new instance for a user using User model 
       const user = new User(req.body) ;
-      await user.save() 
-      res.send("user added successfully") ;
+      const saveduser = await user.save() 
+
+      var token = await saveduser.getJWT() ;
+
+
+      // send back a cookie 
+      res.cookie("token" ,token)  ;
+      res.json({
+        message :"user logged in" , 
+        saveduser 
+      })
      
   } catch (error) {
     res.status(400).send("error saving the user coz : " + error.message)
@@ -60,10 +69,12 @@ authRouter.post("/login" , async(req, res)=>{
 })
 
 authRouter.post("/logout" , async(req , res) =>{
-    res.cookie("token" , null , {
-      expires : new Date(Date.now()) 
-    })
-    res.send("user logged out") ; 
+    // res.cookie("token" , null , {
+    //   expires : new Date(Date.now()) 
+    // })
+    // res.send("user logged out") ; 
+    res.clearCookie("token");
+    res.send("user logged out");
 }) ; 
 
 module.exports = authRouter ;

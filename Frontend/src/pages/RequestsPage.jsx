@@ -1,10 +1,8 @@
-import React from 'react'
-import Requests from '../comps/Requests'
+import React from "react";
+import Requests from "../comps/Requests";
 
 function RequestsPage() {
-  return (
-    <Requests/>
-  )
+  return <Requests />;
 }
 
-export default RequestsPage
+export default RequestsPage;

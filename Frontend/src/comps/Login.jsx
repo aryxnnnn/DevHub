@@ -42,7 +42,7 @@ function Login() {
       <div className="card card-border bg-base-300 w-140 min-h-90 mb-20">
         <div className="card-body">
           <div className='flex flex-col items-center'>
-              <h2 className="card-title text-3xl font-medium ">Sign in to you Account</h2>
+              <h2 className="card-title text-3xl font-medium ">Sign in to your Account</h2>
               <p>Dont have a account ? 
                 <Link to="/signup" className='underline'> Sign up</Link>
               </p>
