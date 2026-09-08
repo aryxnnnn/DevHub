@@ -9,8 +9,8 @@ import { BaseUrl } from '../utils/constants';
 
 function Login() {
 
-  const [email, setEmail] = useState("aayush@gmail.com");
-  const [password, setPassword] = useState("Aayush@123");
+  const [email, setEmail] = useState("DemoLogin@gmail.com");
+  const [password, setPassword] = useState("Login@123");
   const [Error , SetError] = useState("")
 
   const dispatch = useDispatch() ; 
