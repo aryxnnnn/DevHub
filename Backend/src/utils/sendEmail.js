@@ -38,7 +38,8 @@ const createSendEmailCommand = (toAddress, fromAddress , subject , body) => {
 const run = async (subject , body) => {
   const sendEmailCommand = createSendEmailCommand(
     "aryankaushik38108@gmail.com",
-    "notifications@devhub4u.dpdns.org",
+    "aryankaushik38018@gmail.com" , 
+    // "notifications@devhub4u.dpdns.org",
     subject , 
     body
   );
@@ -53,5 +54,24 @@ const run = async (subject , body) => {
     throw caught;
   }
 };
+
+// const run = async (subject, body) => {
+
+//   const sendEmailCommand = createSendEmailCommand(
+//     "aryankaushik38108@gmail.com",
+//     "notifications@devhub4u.dpdns.org",
+//     subject,
+//     body
+//   );
+
+//   try {
+//     const response = await sesClient.send(sendEmailCommand);
+//     console.log("SES SUCCESS:", response);
+//     return response;
+//   } catch (error) {
+//     console.error("SES ERROR:", error);
+//     throw error;
+//   }
+// };
 
 module.exports = {run}

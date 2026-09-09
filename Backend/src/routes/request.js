@@ -52,12 +52,14 @@ requestRouter.post("/request/send/:status/:toUserId" ,userAuth , async(req,res)=
 
     const data = await connectionRequest.save() ;
     
+    // console.log("CONNECTION SAVED");
+    // console.log("ABOUT TO SEND EMAIL");
 
     const emailRes = await sendEmail.run("A new Connection request" ,
-      fromUserId.firstNam + "is interested to connect to" + toUserId.firstName
+      `${req.user.firstName} is interested to connect to ${userexists.firstName}`
      ) ; 
 
-    // console.log("📧 Email response:", emailRes);
+    console.log("📧 Email response:", emailRes);
 
     res.json({
       message : "connection req sent successfully" , 
@@ -65,6 +67,7 @@ requestRouter.post("/request/send/:status/:toUserId" ,userAuth , async(req,res)=
     })
     
   } catch (error) {
+    // console.error("ROUTE ERROR:", error);
     res.status(400).send(error.message) ; 
   }
 } )

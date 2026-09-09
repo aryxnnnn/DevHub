@@ -4,6 +4,8 @@ require("dotenv").config();
 const cors = require("cors")
 const app = express() ; 
 
+require("./utils/cronjob.js") ; 
+
 const {connectDB} =require("./config/db.js") ;
 
 app.use(cors({
