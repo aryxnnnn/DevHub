@@ -41,7 +41,7 @@ function Navbar() {
 
             <li ><Link className="justify-start text-lg"  to = "/">Home</Link></li>
             <li ><Link className="justify-start text-lg"  to = "/profile/view">Profile</Link></li>
-            <li><Link className="justify-start text-lg"  to= "/profile/password">Settings</Link></li>
+            {/* <li><Link className="justify-start text-lg"  to= "/profile/password">Settings</Link></li> */}
             <li ><Link className="justify-start text-lg"  to = "/user/connections">My Connections</Link></li>
             <li><Link className="justify-start text-lg"  to= "/user/requests">Requests</Link></li>
             <li><Link className="justify-start text-lg"  to= "/">Chats

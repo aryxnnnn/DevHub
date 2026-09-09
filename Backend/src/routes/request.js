@@ -6,6 +6,7 @@ const {ConnectionRequest} = require("../models/connectionRequest.js")
 const {User} = require("../models/user.js") ;
 
 const requestRouter = express.Router() ; 
+const sendEmail = require("../utils/sendEmail.js")
 
 requestRouter.post("/request/send/:status/:toUserId" ,userAuth , async(req,res)=>{
   try {
@@ -49,7 +50,14 @@ requestRouter.post("/request/send/:status/:toUserId" ,userAuth , async(req,res)=
       status 
     })
 
-    const data = await connectionRequest.save() ; 
+    const data = await connectionRequest.save() ;
+    
+
+    const emailRes = await sendEmail.run("A new Connection request" ,
+      fromUserId.firstNam + "is interested to connect to" + toUserId.firstName
+     ) ; 
+
+    // console.log("📧 Email response:", emailRes);
 
     res.json({
       message : "connection req sent successfully" , 

@@ -13,7 +13,7 @@ import HomePage from './pages/HomePage.jsx'
 import ProfilePage from "./pages/ProfilePage.jsx" ; 
 import SettingPage from "./pages/SettingPage.jsx" ; 
 import ConnectionsPage from './pages/ConnectionsPage.jsx'
-import Requests from './comps/Requests.jsx'
+
 
 import AuthLayout from './comps/AuthLayout.jsx'
 import RequestsPage from './pages/RequestsPage.jsx'
@@ -53,12 +53,12 @@ const router = createBrowserRouter([
           </AuthLayout>
         )
       },
-      { path: "/profile/password" , element :(
-          <AuthLayout authentication = {true}>
-            <SettingPage/>
-          </AuthLayout>
-        )
-      },
+      // { path: "/profile/password" , element :(
+      //     <AuthLayout authentication = {true}>
+      //       <SettingPage/>
+      //     </AuthLayout>
+      //   )
+      // },
       { path: "/user/requests" , element :(
           <AuthLayout authentication = {true}>
             <RequestsPage/>
