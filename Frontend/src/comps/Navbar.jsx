@@ -23,13 +23,13 @@ function Navbar() {
   return <>
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">DevHub👨‍💻</Link>
+        <Link to="/" className="btn btn-ghost text-2xl">DevHub👨‍💻</Link>
       </div>
       <div className="flex gap-2">
         {/* <input type="text" placeholder="Search" className="input w-24 md:w-auto" /> */}
         {user.userData && (<div className="dropdown dropdown-end mx-6">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+            <div className="w-10 h-10 rounded-full">
               <img
                 alt="User Photo"
                 src = {userData.photoUrl} />
@@ -44,8 +44,7 @@ function Navbar() {
             {/* <li><Link className="justify-start text-lg"  to= "/profile/password">Settings</Link></li> */}
             <li ><Link className="justify-start text-lg"  to = "/user/connections">My Connections</Link></li>
             <li><Link className="justify-start text-lg"  to= "/user/requests">Requests</Link></li>
-            <li><Link className="justify-start text-lg"  to= "/">Chats
-            <span className="badge">soon..</span>
+            <li><Link className="justify-start text-lg"  to= "/chat">Chats
             </Link></li>
             <li><button className="justify-start text-lg"  onClick={handleLogout}>Logout</button></li>
           </ul>

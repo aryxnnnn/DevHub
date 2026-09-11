@@ -1,45 +1,71 @@
-import React from 'react'
+import React from "react";
+import { Link } from 'react-router-dom';
 
-function ConnectionCard({user , removeUser}) {
-
-  
-
+function ConnectionCard({ user, removeUser }) {
   return (
-    <div className=" relative w-[60%] min-h-60 mx-auto my-4 flex bg-base-300 items-center p-2 overflow-auto">
-
-      <button className="absolute top-4 right-4 btn btn-sm btn-error"
-       onClick={() => removeUser(user._id)}> X </button>
-
-      <div className="w-[7.14%] bg-base-300" />
-
-      <div className="w-[28.57%] min-h-42.5">
-        <img src={user.photoUrl} alt="user photo" className="w-full h-full object-contain"/>
+    <div className="w-[70%] min-h-60 mx-auto my-4 flex bg-base-300 rounded-xl p-8 gap-8 items-stretch">
+      {/* LEFT SECTION — PROFILE IMAGE */}
+      <div className="w-[25%] flex items-center justify-center border-r border-base-content/20 pr-8">
+        <img
+          src={user.photoUrl}
+          alt={`${user.firstName}'s profile`}
+          className="w-full aspect-square object-cover rounded-lg"
+        />
       </div>
 
-      <div className="w-[9.29%] bg-base-300 " />
+      {/* MIDDLE SECTION — USER DETAILS */}
+      <div className="w-[55%] flex flex-col justify-center">
+        {/* Name + Gender/Age */}
+        <div className="flex justify-between items-center mb-4">
+          <span className="text-3xl text-yellow-500">
+            {user.firstName} {user.lastName}
+          </span>
 
-      <div className="w-[42.86%] h-50 p-3">
-        <div className='flex justify-between mb-3'>
-          <span className='text-2xl text-yellow-500 '>{user.firstName}  {user.lastName}</span>
-          <span className='text-xl text-yellow-500 ml-4'>{user.gender}, {user.age}</span>
+          <span className="text-2xl text-yellow-500">
+            {user.gender}, {user.age}
+          </span>
         </div>
-        <p className='mb-3' >{user.bio}</p>
 
-        {user.skills.length === 0 &&
-          <p className='my-4 text-xl'>Currently at a learning phase...</p>
-        }
-        
-        {user.skills?.slice(0, 3).map((skill) => (
-          <div key={skill} className="badge badge-soft badge-info h-7 mr-5 text-2xl p-2">
-            {skill}
+        {/* Bio */}
+        <p className="text-lg mb-6">{user.bio}</p>
+
+        {/* Skills / Learning Phase */}
+        {user.skills?.length === 0 ? (
+          <p className="text-xl">Currently at a learning phase...</p>
+        ) : (
+          <div className="flex gap-4 flex-wrap">
+            {user.skills?.slice(0, 3).map((skill) => (
+              <div
+                key={skill}
+                className="badge badge-soft badge-info h-10 text-lg px-4"
+              >
+                {skill}
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
 
-      <div className="w-[7.14%] bg-base-300" />
+      {/* RIGHT SECTION — ACTION BUTTONS */}
+      <div className="w-[20%] flex flex-col justify-between border-l border-base-content/20 pl-8">
+        {/* MESSAGE BUTTON */}
+        <Link to= {`/chat/${user._id}`}>
+          <button className="btn btn-primary w-full"
+            onClick={() => { }}>
+             💬 Message
+          </button>
+        </Link>
 
+        {/* DISCONNECT BUTTON */}
+        <button
+          className="btn btn-error w-full h-11"
+          onClick={() => removeUser(user._id)}
+        >
+          👤➖ Disconnect
+        </button>
+      </div>
     </div>
-  )
+  );
 }
 
-export default ConnectionCard
+export default ConnectionCard;

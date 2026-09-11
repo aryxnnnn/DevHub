@@ -13,5 +13,25 @@ import ConnectionCard from "./ConnectionCard";
 import Connections from "./Connections";
 import RequestCard from "./RequestCard";
 import Requests from "./Requests";
+import Chat from "./Chat";
+import ChatCard from "./ChatCard";
 
-export {Navbar , Footer , Login , Signup , AuthLayout , LoadingSpinner , Feed , ProfileCard ,FeedCard , Toast ,RedToast , ConnectionCard,Connections , RequestCard , Requests} ; 
+export {
+  Navbar,
+  Footer,
+  Login,
+  Signup,
+  AuthLayout,
+  LoadingSpinner,
+  Feed,
+  ProfileCard,
+  FeedCard,
+  Toast,
+  RedToast,
+  ConnectionCard,
+  Connections,
+  RequestCard,
+  Requests,
+  Chat,
+  ChatCard,
+};

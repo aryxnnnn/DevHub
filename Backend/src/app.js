@@ -4,7 +4,12 @@ require("dotenv").config();
 const cors = require("cors")
 const app = express() ; 
 
-require("./utils/cronjob.js") ; 
+const initialiseSocket = require("./utils/Socket.js") 
+const http = require("http") ; 
+const server = http.createServer(app) ;
+initialiseSocket(server)
+
+// require("./utils/cronjob.js") ; 
 
 const {connectDB} =require("./config/db.js") ;
 
@@ -19,16 +24,18 @@ const authRouter = require("./routes/auth.js")
 const profileRouter = require("./routes/profile.js") 
 const requestRouter = require("./routes/request.js")
 const userRouter = require("./routes/user.js")
+const chatRouter = require("./routes/chat.js")
 
 app.use("/" , authRouter) ; 
 app.use("/" , profileRouter) ; 
 app.use("/" , requestRouter) ; 
 app.use("/" , userRouter) ; 
+app.use("/" , chatRouter) ; 
 
 connectDB()
   .then( ()=>{
     console.log("DB connected Successfully") 
-    app.listen(7777 , ()=>{
+    server.listen(7777 , ()=>{
       console.log("server is successfully running on port 7777") ; 
     }) ;  
   })
